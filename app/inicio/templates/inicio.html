@@ -6,7 +6,7 @@
 
 <h4 class="mt-3">
     Vagas de Estacionamento
-    <a href="" class="btn btn-success float-right mb-2" id="btn-a">Novo</a>
+    <a href="" class="btn btn-success float-right mb-2" id="btn-a">Novo</a>    
 </h4>
 
 <hr>
@@ -16,18 +16,34 @@
     <thead>
         <tr>
             <th>Vaga</th>
-            <th>Veiculo</th>
-            <th>Placa</th>
+            <th>Inicio</th>
+            <th>Fim</th>
             <th>Status</th>            
         </tr>
     </thead>
     <tbody >
+        {% for res in reserva %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{res.vaga}}</td>
+            
+            {% if res.inicio == 'null' %}
+                <td>--/--/--</td>                 
+            {% else %}
+                <td>{{res.inicio}}</td> 
+            {% endif%}
+            
+            {% if res.fim == 'null' %}
+                <td>--/--/--</td>     
+            {% else %}
+                <td>{{res.fim}}</td>
+            {% endif%}                        
+            {% if res.status == '1' %}
+                <td>Ocupada</td>
+            {% else %}
+                <td>Livre</td>
+            {% endif%}
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
