@@ -14,6 +14,14 @@ def inicio(request):
     
     return render(request, 'inicio.html', {'reserva' : reserva})
 
+def clientes(request):
+    cliente = Cliente.objects.values(
+                                    'nome',
+                                    'endereco',
+                                    'telefone',
+                                    'uf')
+    
+    return render(request, 'list_cliente.html', {'cliente' : cliente})
 
 def post_nova_reserva(request):    
     if request.method == "POST":
