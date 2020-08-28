@@ -25,11 +25,23 @@ def clientes(request):
 
 
 def carros(request):
-    return render(request, 'list_carro.html')    
+
+    carro = Carro.objects.values(
+                                'modelo',
+                                'placa',
+                                'ano',
+                                'cor')
+    return render(request, 'list_carro.html', { 'carro': carro })    
 
 
 def vagas(request):
-    return render(request, 'list_vaga.html')    
+
+    vagas = Vaga.objects.values(
+                             'descricao',
+                             'vaga')
+
+    return render(request, 'list_vaga.html', {'vagas' : vagas })    
+    
 
 def post_nova_reserva(request):    
     if request.method == "POST":
