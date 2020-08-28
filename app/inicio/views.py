@@ -23,6 +23,14 @@ def clientes(request):
     
     return render(request, 'list_cliente.html', {'cliente' : cliente})
 
+
+def carros(request):
+    return render(request, 'list_carro.html')    
+
+
+def vagas(request):
+    return render(request, 'list_vaga.html')    
+
 def post_nova_reserva(request):    
     if request.method == "POST":
         form = ReservaForm(request.POST)

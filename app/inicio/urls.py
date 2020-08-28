@@ -6,4 +6,6 @@ urlpatterns = [
     path('nova/', post_nova_reserva, name='nova'),
     path('cliente_novo/', post_novo_cliente, name='cliente_novo'),
     path('cliente/', clientes, name='cliente'),
+    path('carro/', carros, name='carro'),
+    path('vaga/', vagas, name='vaga'),
 ]

@@ -29,10 +29,11 @@
                 Menu
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'nova' %}">Cadastro de Vagas</a>
+                <a class="dropdown-item" href="{% url 'vaga' %}">Cadastro de Vagas</a>
                 <a class="dropdown-item" href="{% url 'cliente'%}">Cadastro de Cliente</a>
+                <a class="dropdown-item" href="{% url 'carro'%}">Cadastro de Carros</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Reservar</a>
+                <a class="dropdown-item" href="{% url 'nova' %}">Reservar</a>
               </div>
             </li>
           </ul>

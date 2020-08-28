@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h4 class="mt-3">Vagas  </h4>
+
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Placa</th>
+            <th>Ano</th>
+            <th>Cor</th>            
+        </tr>
+    </thead>
+    <tbody >
+        {% for car in carro %}
+        <tr>
+            <td>{{car.modelo}}</td>
+            <td>{{car.placa}}</td>
+            <td>{{car.ano}}</td>
+            <td>{{car.cor}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<a href="{% url 'cliente_novo' %}" class="btn btn-success" style="width: 150px;">Nova Vaga</a>
+<a href="{% url 'inicio' %}" class="btn btn-danger" style="width: 150px;">Voltar</a>
+{% endblock  %}
