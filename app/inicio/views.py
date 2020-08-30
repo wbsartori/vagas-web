@@ -10,6 +10,8 @@ from .forms import *
 def inicio(request):
     reserva = Reserva.objects.values(
                                     'vaga',
+                                    'cliente',
+                                    'carro',                                    
                                     'inicio',
                                     'fim',
                                     'status')
@@ -47,11 +49,9 @@ def vagas(request):
 
 def post_nova_reserva(request):    
     if request.method == "POST":
-        form = ReservaForm(request.POST)
-        formVaga = VagaForm(request.POST)
-        if form.is_valid() and formVaga.is_valid():                        
-            form.save()
-            formVaga.save()
+        form = ReservaForm(request.POST)        
+        if form.is_valid():                        
+            form.save()            
             return redirect('inicio')
     else:
         form = ReservaForm
@@ -89,20 +89,3 @@ def post_nova_vaga(request):
     else:
         form = VagaForm
     return render(request, 'add_vaga.html',{'form':form})
-
-
-class nova_reserva(View):
-    def get(self, request, *args, **kwargs):
-        reserva_form = Reserva.objects.values('inicio','fim','status')
-        cliente_form = Cliente.objects.values('nome')
-        carro_form   = Carro.objects.values('modelo')
-        vaga_form    = Vaga.objects.values('descricao','vaga')
-
-        data = {}
-        data['reserva_form'] = reserva_form
-        data['cliente_form'] = cliente_form
-        data['carro_form']   = carro_form
-        data['vaga_form']    = vaga_form
-
-        return render(request, 'add_reserva.html', data)
-

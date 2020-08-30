@@ -16,6 +16,7 @@
     <thead>
         <tr>
             <th>Vaga</th>
+            <th>Carro</th>
             <th>Inicio</th>
             <th>Fim</th>
             <th>Status</th>            
@@ -25,6 +26,7 @@
         {% for res in reserva %}
         <tr>
             <td>{{res.vaga}}</td>
+            <td>{{res.carro}}</td>
             
             {% if res.inicio == '' %}
                 <td>--/--/--</td>                 
