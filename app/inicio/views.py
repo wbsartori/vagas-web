@@ -63,3 +63,25 @@ def post_novo_cliente(request):
     else:
         form = ClienteForm
     return render(request, 'add_cliente.html', {'form':form})
+
+
+def post_novo_carro(request):
+    if request.method == 'POST':
+        form = CarroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    else:
+        form = CarroForm
+    return render(request, 'add_carro.html', {'form' : form})
+    
+
+def post_nova_vaga(request):
+    if request.method == 'POST':
+        form = VagaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    else:
+        form = VagaForm
+    return render(request, 'add_vaga.html',{'form':form})

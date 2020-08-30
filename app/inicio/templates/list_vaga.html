@@ -10,24 +10,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Model</th>
-            <th>Placa</th>
-            <th>Ano</th>
-            <th>Cor</th>            
+            <th>Descricao</th>
+            <th>Vaga</th>   
         </tr>
     </thead>
     <tbody >
-        {% for car in carro %}
+        {% for vag in vagas %}
         <tr>
-            <td>{{car.modelo}}</td>
-            <td>{{car.placa}}</td>
-            <td>{{car.ano}}</td>
-            <td>{{car.cor}}</td>
+            <td>{{vag.descricao}}</td>
+            <td>{{vag.vaga}}</td>            
         </tr>
         {% endfor %}
     </tbody>
 </table>
 <hr>
-<a href="{% url 'cliente_novo' %}" class="btn btn-success" style="width: 150px;">Nova Vaga</a>
+<a href="{% url 'vaga_novo' %}" class="btn btn-success" style="width: 150px;">Nova Vaga</a>
 <a href="{% url 'inicio' %}" class="btn btn-danger" style="width: 150px;">Voltar</a>
 {% endblock  %}
