@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.views.generic.list import View
+
 from .models import *
 from .forms import *
 
@@ -46,8 +48,10 @@ def vagas(request):
 def post_nova_reserva(request):    
     if request.method == "POST":
         form = ReservaForm(request.POST)
-        if form.is_valid():                        
+        formVaga = VagaForm(request.POST)
+        if form.is_valid() and formVaga.is_valid():                        
             form.save()
+            formVaga.save()
             return redirect('inicio')
     else:
         form = ReservaForm
@@ -74,7 +78,7 @@ def post_novo_carro(request):
     else:
         form = CarroForm
     return render(request, 'add_carro.html', {'form' : form})
-    
+
 
 def post_nova_vaga(request):
     if request.method == 'POST':
@@ -85,3 +89,20 @@ def post_nova_vaga(request):
     else:
         form = VagaForm
     return render(request, 'add_vaga.html',{'form':form})
+
+
+class nova_reserva(View):
+    def get(self, request, *args, **kwargs):
+        reserva_form = Reserva.objects.values('inicio','fim','status')
+        cliente_form = Cliente.objects.values('nome')
+        carro_form   = Carro.objects.values('modelo')
+        vaga_form    = Vaga.objects.values('descricao','vaga')
+
+        data = {}
+        data['reserva_form'] = reserva_form
+        data['cliente_form'] = cliente_form
+        data['carro_form']   = carro_form
+        data['vaga_form']    = vaga_form
+
+        return render(request, 'add_reserva.html', data)
+
